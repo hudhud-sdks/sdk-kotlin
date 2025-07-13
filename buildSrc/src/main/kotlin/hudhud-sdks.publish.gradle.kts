@@ -1,59 +1,57 @@
+import com.vanniktech.maven.publish.JavadocJar
+import com.vanniktech.maven.publish.KotlinJvm
+import com.vanniktech.maven.publish.MavenPublishBaseExtension
+import com.vanniktech.maven.publish.SonatypeHost
+
 plugins {
-    `maven-publish`
-    signing
+    id("com.vanniktech.maven.publish")
 }
 
-configure<PublishingExtension> {
-    publications {
-        register<MavenPublication>("maven") {
-            from(components["java"])
+repositories {
+    gradlePluginPortal()
+    mavenCentral()
+}
 
-            pom {
-                name.set("HudHud API")
-                description.set("HudHud API for SDKs")
+extra["signingInMemoryKey"] = System.getenv("GPG_SIGNING_KEY")
+extra["signingInMemoryKeyId"] = System.getenv("GPG_SIGNING_KEY_ID")
+extra["signingInMemoryKeyPassword"] = System.getenv("GPG_SIGNING_PASSWORD")
 
-                licenses {
-                    license {
-                        name.set("Apache-2.0")
-                    }
-                }
+configure<MavenPublishBaseExtension> {
+    signAllPublications()
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
 
-                developers {
-                    developer {
-                        name.set("Hudhud SDKs")
-                    }
-                }
+    coordinates(project.group.toString(), project.name, project.version.toString())
+    configure(
+        KotlinJvm(
+            javadocJar = JavadocJar.Dokka("dokkaHtml"),
+            sourcesJar = true,
+        )
+    )
 
-                scm {
-                    connection.set("scm:git:git://github.com/hudhud-sdks/sdk-kotlin.git")
-                    developerConnection.set("scm:git:git://github.com/hudhud-sdks/sdk-kotlin.git")
-                    url.set("https://github.com/hudhud-sdks/sdk-kotlin")
-                }
+    pom {
+        name.set("HudHud API")
+        description.set("HudHud API for SDKs")
 
-                versionMapping {
-                    allVariants {
-                        fromResolutionResult()
-                    }
-                }
+        licenses {
+            license {
+                name.set("Apache-2.0")
             }
+        }
+
+        developers {
+            developer {
+                name.set("Hudhud SDKs")
+            }
+        }
+
+        scm {
+            connection.set("scm:git:git://github.com/hudhud-sdks/sdk-kotlin.git")
+            developerConnection.set("scm:git:git://github.com/hudhud-sdks/sdk-kotlin.git")
+            url.set("https://github.com/hudhud-sdks/sdk-kotlin")
         }
     }
 }
 
-signing {
-    val signingKeyId = System.getenv("GPG_SIGNING_KEY_ID")?.ifBlank { null }
-    val signingKey = System.getenv("GPG_SIGNING_KEY")?.ifBlank { null }
-    val signingPassword = System.getenv("GPG_SIGNING_PASSWORD")?.ifBlank { null }
-    if (signingKey != null && signingPassword != null) {
-        useInMemoryPgpKeys(
-            signingKeyId,
-            signingKey,
-            signingPassword,
-        )
-        sign(publishing.publications["maven"])
-    }
-}
-
-tasks.named("publish") {
-    dependsOn(":closeAndReleaseSonatypeStagingRepository")
+tasks.withType<Zip>().configureEach {
+    isZip64 = true
 }
