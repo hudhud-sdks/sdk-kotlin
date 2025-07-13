@@ -1,0 +1,4 @@
+configured_endpoints: 1
+openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/hudhud-sdks%2Fhudhud-sdks-a8fa6df4211849aa501a7c8975489e750a0f2fb52af02c1cb36c5e7a258df829.yml
+openapi_spec_hash: 3df5107a3d638a5e2b175b4807b5dc6c
+config_hash: a7fc64bd81a10bd54d1ee3df288b72f3
