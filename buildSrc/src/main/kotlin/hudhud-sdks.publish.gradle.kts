@@ -25,9 +25,9 @@ configure<PublishingExtension> {
                 }
 
                 scm {
-                    connection.set("scm:git:git://github.com/stainless-sdks/hudhud-sdks-kotlin.git")
-                    developerConnection.set("scm:git:git://github.com/stainless-sdks/hudhud-sdks-kotlin.git")
-                    url.set("https://github.com/stainless-sdks/hudhud-sdks-kotlin")
+                    connection.set("scm:git:git://github.com/hudhud-sdks/sdk-kotlin.git")
+                    developerConnection.set("scm:git:git://github.com/hudhud-sdks/sdk-kotlin.git")
+                    url.set("https://github.com/hudhud-sdks/sdk-kotlin")
                 }
 
                 versionMapping {

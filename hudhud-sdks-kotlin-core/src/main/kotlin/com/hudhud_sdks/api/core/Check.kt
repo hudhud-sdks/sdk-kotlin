@@ -67,7 +67,7 @@ This can happen if you are either:
 
 Double-check that you are depending on compatible Jackson versions.
 
-See https://www.github.com/stainless-sdks/hudhud-sdks-kotlin#jackson for more information.
+See https://www.github.com/hudhud-sdks/sdk-kotlin#jackson for more information.
         """
             .trimIndent()
     }
