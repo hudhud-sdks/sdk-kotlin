@@ -2,8 +2,8 @@
 
 <!-- x-release-please-start-version -->
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.hudhud_sdks.api/hudhud-sdks-kotlin)](https://central.sonatype.com/artifact/com.hudhud_sdks.api/hudhud-sdks-kotlin/0.0.1-alpha.0)
-[![javadoc](https://javadoc.io/badge2/com.hudhud_sdks.api/hudhud-sdks-kotlin/0.0.1-alpha.0/javadoc.svg)](https://javadoc.io/doc/com.hudhud_sdks.api/hudhud-sdks-kotlin/0.0.1-alpha.0)
+[![Maven Central](https://img.shields.io/maven-central/v/com.hudhud_sdks.api/hudhud-sdks-kotlin)](https://central.sonatype.com/artifact/com.hudhud_sdks.api/hudhud-sdks-kotlin/0.1.0-alpha.1)
+[![javadoc](https://javadoc.io/badge2/com.hudhud_sdks.api/hudhud-sdks-kotlin/0.1.0-alpha.1/javadoc.svg)](https://javadoc.io/doc/com.hudhud_sdks.api/hudhud-sdks-kotlin/0.1.0-alpha.1)
 
 <!-- x-release-please-end -->
 
@@ -13,7 +13,7 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 <!-- x-release-please-start-version -->
 
-KDocs are available on [javadoc.io](https://javadoc.io/doc/com.hudhud_sdks.api/hudhud-sdks-kotlin/0.0.1-alpha.0).
+KDocs are available on [javadoc.io](https://javadoc.io/doc/com.hudhud_sdks.api/hudhud-sdks-kotlin/0.1.0-alpha.1).
 
 <!-- x-release-please-end -->
 
@@ -24,7 +24,7 @@ KDocs are available on [javadoc.io](https://javadoc.io/doc/com.hudhud_sdks.api/h
 ### Gradle
 
 ```kotlin
-implementation("com.hudhud_sdks.api:hudhud-sdks-kotlin:0.0.1-alpha.0")
+implementation("com.hudhud_sdks.api:hudhud-sdks-kotlin:0.1.0-alpha.1")
 ```
 
 ### Maven
@@ -33,7 +33,7 @@ implementation("com.hudhud_sdks.api:hudhud-sdks-kotlin:0.0.1-alpha.0")
 <dependency>
   <groupId>com.hudhud_sdks.api</groupId>
   <artifactId>hudhud-sdks-kotlin</artifactId>
-  <version>0.0.1-alpha.0</version>
+  <version>0.1.0-alpha.1</version>
 </dependency>
 ```
 
