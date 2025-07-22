@@ -30,7 +30,7 @@ configure<MavenPublishBaseExtension> {
 
     pom {
         name.set("HudHud API")
-        description.set("HudHud API for SDKs")
+        description.set("This API created specially for HudHud SDKs and APIs")
         url.set("https://www.github.com/hudhud-sdks/sdk-kotlin")
 
         licenses {
