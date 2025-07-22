@@ -2,8 +2,8 @@
 
 <!-- x-release-please-start-version -->
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.hudhud_sdks.api/hudhud-sdks-kotlin)](https://central.sonatype.com/artifact/com.hudhud_sdks.api/hudhud-sdks-kotlin/0.0.1-alpha.0)
-[![javadoc](https://javadoc.io/badge2/com.hudhud_sdks.api/hudhud-sdks-kotlin/0.0.1-alpha.0/javadoc.svg)](https://javadoc.io/doc/com.hudhud_sdks.api/hudhud-sdks-kotlin/0.0.1-alpha.0)
+[![Maven Central](https://img.shields.io/maven-central/v/sa.hudhud.api/hudhud-sdks-kotlin)](https://central.sonatype.com/artifact/sa.hudhud.api/hudhud-sdks-kotlin/0.0.1-alpha.0)
+[![javadoc](https://javadoc.io/badge2/sa.hudhud.api/hudhud-sdks-kotlin/0.0.1-alpha.0/javadoc.svg)](https://javadoc.io/doc/sa.hudhud.api/hudhud-sdks-kotlin/0.0.1-alpha.0)
 
 <!-- x-release-please-end -->
 
@@ -13,7 +13,7 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 <!-- x-release-please-start-version -->
 
-KDocs are available on [javadoc.io](https://javadoc.io/doc/com.hudhud_sdks.api/hudhud-sdks-kotlin/0.0.1-alpha.0).
+KDocs are available on [javadoc.io](https://javadoc.io/doc/sa.hudhud.api/hudhud-sdks-kotlin/0.0.1-alpha.0).
 
 <!-- x-release-please-end -->
 
@@ -24,14 +24,14 @@ KDocs are available on [javadoc.io](https://javadoc.io/doc/com.hudhud_sdks.api/h
 ### Gradle
 
 ```kotlin
-implementation("com.hudhud_sdks.api:hudhud-sdks-kotlin:0.0.1-alpha.0")
+implementation("sa.hudhud.api:hudhud-sdks-kotlin:0.0.1-alpha.0")
 ```
 
 ### Maven
 
 ```xml
 <dependency>
-  <groupId>com.hudhud_sdks.api</groupId>
+  <groupId>sa.hudhud.api</groupId>
   <artifactId>hudhud-sdks-kotlin</artifactId>
   <version>0.0.1-alpha.0</version>
 </dependency>
@@ -46,10 +46,10 @@ This library requires Java 8 or later.
 ## Usage
 
 ```kotlin
-import com.hudhud_sdks.api.client.HudhudSdksClient
-import com.hudhud_sdks.api.client.okhttp.HudhudSdksOkHttpClient
-import com.hudhud_sdks.api.models.routing.RoutingCreateDistanceMatrixParams
-import com.hudhud_sdks.api.models.routing.RoutingCreateDistanceMatrixResponse
+import sa.hudhud.api.client.HudhudSdksClient
+import sa.hudhud.api.client.okhttp.HudhudSdksOkHttpClient
+import sa.hudhud.api.models.routing.RoutingCreateDistanceMatrixParams
+import sa.hudhud.api.models.routing.RoutingCreateDistanceMatrixResponse
 
 // Configures using the `hudhudsdks.apiKey` and `hudhudsdks.baseUrl` system properties
 // Or configures using the `HUDHUD_SDKS_API_KEY` and `HUDHUD_SDKS_BASE_URL` environment variables
@@ -63,8 +63,8 @@ val response: RoutingCreateDistanceMatrixResponse = client.routing().createDista
 Configure the client using system properties or environment variables:
 
 ```kotlin
-import com.hudhud_sdks.api.client.HudhudSdksClient
-import com.hudhud_sdks.api.client.okhttp.HudhudSdksOkHttpClient
+import sa.hudhud.api.client.HudhudSdksClient
+import sa.hudhud.api.client.okhttp.HudhudSdksOkHttpClient
 
 // Configures using the `hudhudsdks.apiKey` and `hudhudsdks.baseUrl` system properties
 // Or configures using the `HUDHUD_SDKS_API_KEY` and `HUDHUD_SDKS_BASE_URL` environment variables
@@ -74,8 +74,8 @@ val client: HudhudSdksClient = HudhudSdksOkHttpClient.fromEnv()
 Or manually:
 
 ```kotlin
-import com.hudhud_sdks.api.client.HudhudSdksClient
-import com.hudhud_sdks.api.client.okhttp.HudhudSdksOkHttpClient
+import sa.hudhud.api.client.HudhudSdksClient
+import sa.hudhud.api.client.okhttp.HudhudSdksOkHttpClient
 
 val client: HudhudSdksClient = HudhudSdksOkHttpClient.builder()
     .apiKey("My API Key")
@@ -85,8 +85,8 @@ val client: HudhudSdksClient = HudhudSdksOkHttpClient.builder()
 Or using a combination of the two approaches:
 
 ```kotlin
-import com.hudhud_sdks.api.client.HudhudSdksClient
-import com.hudhud_sdks.api.client.okhttp.HudhudSdksOkHttpClient
+import sa.hudhud.api.client.HudhudSdksClient
+import sa.hudhud.api.client.okhttp.HudhudSdksOkHttpClient
 
 val client: HudhudSdksClient = HudhudSdksOkHttpClient.builder()
     // Configures using the `hudhudsdks.apiKey` and `hudhudsdks.baseUrl` system properties
@@ -114,7 +114,7 @@ System properties take precedence over environment variables.
 To temporarily use a modified client configuration, while reusing the same connection and thread pools, call `withOptions()` on any client or service:
 
 ```kotlin
-import com.hudhud_sdks.api.client.HudhudSdksClient
+import sa.hudhud.api.client.HudhudSdksClient
 
 val clientWithOptions: HudhudSdksClient = client.withOptions {
     it.baseUrl("https://example.com")
@@ -143,10 +143,10 @@ Because each class is immutable, builder modification will _never_ affect alread
 The default client is synchronous. To switch to asynchronous execution, call the `async()` method:
 
 ```kotlin
-import com.hudhud_sdks.api.client.HudhudSdksClient
-import com.hudhud_sdks.api.client.okhttp.HudhudSdksOkHttpClient
-import com.hudhud_sdks.api.models.routing.RoutingCreateDistanceMatrixParams
-import com.hudhud_sdks.api.models.routing.RoutingCreateDistanceMatrixResponse
+import sa.hudhud.api.client.HudhudSdksClient
+import sa.hudhud.api.client.okhttp.HudhudSdksOkHttpClient
+import sa.hudhud.api.models.routing.RoutingCreateDistanceMatrixParams
+import sa.hudhud.api.models.routing.RoutingCreateDistanceMatrixResponse
 
 // Configures using the `hudhudsdks.apiKey` and `hudhudsdks.baseUrl` system properties
 // Or configures using the `HUDHUD_SDKS_API_KEY` and `HUDHUD_SDKS_BASE_URL` environment variables
@@ -158,10 +158,10 @@ val response: RoutingCreateDistanceMatrixResponse = client.async().routing().cre
 Or create an asynchronous client from the beginning:
 
 ```kotlin
-import com.hudhud_sdks.api.client.HudhudSdksClientAsync
-import com.hudhud_sdks.api.client.okhttp.HudhudSdksOkHttpClientAsync
-import com.hudhud_sdks.api.models.routing.RoutingCreateDistanceMatrixParams
-import com.hudhud_sdks.api.models.routing.RoutingCreateDistanceMatrixResponse
+import sa.hudhud.api.client.HudhudSdksClientAsync
+import sa.hudhud.api.client.okhttp.HudhudSdksOkHttpClientAsync
+import sa.hudhud.api.models.routing.RoutingCreateDistanceMatrixParams
+import sa.hudhud.api.models.routing.RoutingCreateDistanceMatrixResponse
 
 // Configures using the `hudhudsdks.apiKey` and `hudhudsdks.baseUrl` system properties
 // Or configures using the `HUDHUD_SDKS_API_KEY` and `HUDHUD_SDKS_BASE_URL` environment variables
@@ -179,10 +179,10 @@ The SDK defines methods that deserialize responses into instances of Kotlin clas
 To access this data, prefix any HTTP method call on a client or service with `withRawResponse()`:
 
 ```kotlin
-import com.hudhud_sdks.api.core.http.Headers
-import com.hudhud_sdks.api.core.http.HttpResponseFor
-import com.hudhud_sdks.api.models.routing.RoutingCreateDistanceMatrixParams
-import com.hudhud_sdks.api.models.routing.RoutingCreateDistanceMatrixResponse
+import sa.hudhud.api.core.http.Headers
+import sa.hudhud.api.core.http.HttpResponseFor
+import sa.hudhud.api.models.routing.RoutingCreateDistanceMatrixParams
+import sa.hudhud.api.models.routing.RoutingCreateDistanceMatrixResponse
 
 val response: HttpResponseFor<RoutingCreateDistanceMatrixResponse> = client.routing().withRawResponse().createDistanceMatrix()
 
@@ -193,7 +193,7 @@ val headers: Headers = response.headers()
 You can still deserialize the response into an instance of a Kotlin class if needed:
 
 ```kotlin
-import com.hudhud_sdks.api.models.routing.RoutingCreateDistanceMatrixResponse
+import sa.hudhud.api.models.routing.RoutingCreateDistanceMatrixResponse
 
 val parsedResponse: RoutingCreateDistanceMatrixResponse = response.parse()
 ```
@@ -202,24 +202,24 @@ val parsedResponse: RoutingCreateDistanceMatrixResponse = response.parse()
 
 The SDK throws custom unchecked exception types:
 
-- [`HudhudSdksServiceException`](hudhud-sdks-kotlin-core/src/main/kotlin/com/hudhud_sdks/api/errors/HudhudSdksServiceException.kt): Base class for HTTP errors. See this table for which exception subclass is thrown for each HTTP status code:
+- [`HudhudSdksServiceException`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/errors/HudhudSdksServiceException.kt): Base class for HTTP errors. See this table for which exception subclass is thrown for each HTTP status code:
 
-  | Status | Exception                                                                                                                              |
-  | ------ | -------------------------------------------------------------------------------------------------------------------------------------- |
-  | 400    | [`BadRequestException`](hudhud-sdks-kotlin-core/src/main/kotlin/com/hudhud_sdks/api/errors/BadRequestException.kt)                     |
-  | 401    | [`UnauthorizedException`](hudhud-sdks-kotlin-core/src/main/kotlin/com/hudhud_sdks/api/errors/UnauthorizedException.kt)                 |
-  | 403    | [`PermissionDeniedException`](hudhud-sdks-kotlin-core/src/main/kotlin/com/hudhud_sdks/api/errors/PermissionDeniedException.kt)         |
-  | 404    | [`NotFoundException`](hudhud-sdks-kotlin-core/src/main/kotlin/com/hudhud_sdks/api/errors/NotFoundException.kt)                         |
-  | 422    | [`UnprocessableEntityException`](hudhud-sdks-kotlin-core/src/main/kotlin/com/hudhud_sdks/api/errors/UnprocessableEntityException.kt)   |
-  | 429    | [`RateLimitException`](hudhud-sdks-kotlin-core/src/main/kotlin/com/hudhud_sdks/api/errors/RateLimitException.kt)                       |
-  | 5xx    | [`InternalServerException`](hudhud-sdks-kotlin-core/src/main/kotlin/com/hudhud_sdks/api/errors/InternalServerException.kt)             |
-  | others | [`UnexpectedStatusCodeException`](hudhud-sdks-kotlin-core/src/main/kotlin/com/hudhud_sdks/api/errors/UnexpectedStatusCodeException.kt) |
+  | Status | Exception                                                                                                                        |
+  | ------ | -------------------------------------------------------------------------------------------------------------------------------- |
+  | 400    | [`BadRequestException`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/errors/BadRequestException.kt)                     |
+  | 401    | [`UnauthorizedException`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/errors/UnauthorizedException.kt)                 |
+  | 403    | [`PermissionDeniedException`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/errors/PermissionDeniedException.kt)         |
+  | 404    | [`NotFoundException`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/errors/NotFoundException.kt)                         |
+  | 422    | [`UnprocessableEntityException`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/errors/UnprocessableEntityException.kt)   |
+  | 429    | [`RateLimitException`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/errors/RateLimitException.kt)                       |
+  | 5xx    | [`InternalServerException`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/errors/InternalServerException.kt)             |
+  | others | [`UnexpectedStatusCodeException`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/errors/UnexpectedStatusCodeException.kt) |
 
-- [`HudhudSdksIoException`](hudhud-sdks-kotlin-core/src/main/kotlin/com/hudhud_sdks/api/errors/HudhudSdksIoException.kt): I/O networking errors.
+- [`HudhudSdksIoException`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/errors/HudhudSdksIoException.kt): I/O networking errors.
 
-- [`HudhudSdksInvalidDataException`](hudhud-sdks-kotlin-core/src/main/kotlin/com/hudhud_sdks/api/errors/HudhudSdksInvalidDataException.kt): Failure to interpret successfully parsed data. For example, when accessing a property that's supposed to be required, but the API unexpectedly omitted it from the response.
+- [`HudhudSdksInvalidDataException`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/errors/HudhudSdksInvalidDataException.kt): Failure to interpret successfully parsed data. For example, when accessing a property that's supposed to be required, but the API unexpectedly omitted it from the response.
 
-- [`HudhudSdksException`](hudhud-sdks-kotlin-core/src/main/kotlin/com/hudhud_sdks/api/errors/HudhudSdksException.kt): Base class for all exceptions. Most errors will result in one of the previously mentioned ones, but completely generic errors may be thrown using the base class.
+- [`HudhudSdksException`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/errors/HudhudSdksException.kt): Base class for all exceptions. Most errors will result in one of the previously mentioned ones, but completely generic errors may be thrown using the base class.
 
 ## Logging
 
@@ -243,7 +243,7 @@ The SDK depends on [Jackson](https://github.com/FasterXML/jackson) for JSON seri
 
 The SDK throws an exception if it detects an incompatible Jackson version at runtime (e.g. if the default version was overridden in your Maven or Gradle config).
 
-If the SDK threw an exception, but you're _certain_ the version is compatible, then disable the version check using the `checkJacksonVersionCompatibility` on [`HudhudSdksOkHttpClient`](hudhud-sdks-kotlin-client-okhttp/src/main/kotlin/com/hudhud_sdks/api/client/okhttp/HudhudSdksOkHttpClient.kt) or [`HudhudSdksOkHttpClientAsync`](hudhud-sdks-kotlin-client-okhttp/src/main/kotlin/com/hudhud_sdks/api/client/okhttp/HudhudSdksOkHttpClientAsync.kt).
+If the SDK threw an exception, but you're _certain_ the version is compatible, then disable the version check using the `checkJacksonVersionCompatibility` on [`HudhudSdksOkHttpClient`](hudhud-sdks-kotlin-client-okhttp/src/main/kotlin/sa/hudhud/api/client/okhttp/HudhudSdksOkHttpClient.kt) or [`HudhudSdksOkHttpClientAsync`](hudhud-sdks-kotlin-client-okhttp/src/main/kotlin/sa/hudhud/api/client/okhttp/HudhudSdksOkHttpClientAsync.kt).
 
 > [!CAUTION]
 > We make no guarantee that the SDK works correctly when the Jackson version check is disabled.
@@ -267,8 +267,8 @@ The API may also explicitly instruct the SDK to retry or not retry a response.
 To set a custom number of retries, configure the client using the `maxRetries` method:
 
 ```kotlin
-import com.hudhud_sdks.api.client.HudhudSdksClient
-import com.hudhud_sdks.api.client.okhttp.HudhudSdksOkHttpClient
+import sa.hudhud.api.client.HudhudSdksClient
+import sa.hudhud.api.client.okhttp.HudhudSdksOkHttpClient
 
 val client: HudhudSdksClient = HudhudSdksOkHttpClient.builder()
     .fromEnv()
@@ -283,7 +283,7 @@ Requests time out after 1 minute by default.
 To set a custom timeout, configure the method call using the `timeout` method:
 
 ```kotlin
-import com.hudhud_sdks.api.models.routing.RoutingCreateDistanceMatrixResponse
+import sa.hudhud.api.models.routing.RoutingCreateDistanceMatrixResponse
 
 val response: RoutingCreateDistanceMatrixResponse = client.routing().createDistanceMatrix(RequestOptions.builder().timeout(Duration.ofSeconds(30)).build())
 ```
@@ -291,9 +291,9 @@ val response: RoutingCreateDistanceMatrixResponse = client.routing().createDista
 Or configure the default for all method calls at the client level:
 
 ```kotlin
-import com.hudhud_sdks.api.client.HudhudSdksClient
-import com.hudhud_sdks.api.client.okhttp.HudhudSdksOkHttpClient
 import java.time.Duration
+import sa.hudhud.api.client.HudhudSdksClient
+import sa.hudhud.api.client.okhttp.HudhudSdksOkHttpClient
 
 val client: HudhudSdksClient = HudhudSdksOkHttpClient.builder()
     .fromEnv()
@@ -306,10 +306,10 @@ val client: HudhudSdksClient = HudhudSdksOkHttpClient.builder()
 To route requests through a proxy, configure the client using the `proxy` method:
 
 ```kotlin
-import com.hudhud_sdks.api.client.HudhudSdksClient
-import com.hudhud_sdks.api.client.okhttp.HudhudSdksOkHttpClient
 import java.net.InetSocketAddress
 import java.net.Proxy
+import sa.hudhud.api.client.HudhudSdksClient
+import sa.hudhud.api.client.okhttp.HudhudSdksOkHttpClient
 
 val client: HudhudSdksClient = HudhudSdksOkHttpClient.builder()
     .fromEnv()
@@ -330,8 +330,8 @@ val client: HudhudSdksClient = HudhudSdksOkHttpClient.builder()
 To configure how HTTPS connections are secured, configure the client using the `sslSocketFactory`, `trustManager`, and `hostnameVerifier` methods:
 
 ```kotlin
-import com.hudhud_sdks.api.client.HudhudSdksClient
-import com.hudhud_sdks.api.client.okhttp.HudhudSdksOkHttpClient
+import sa.hudhud.api.client.HudhudSdksClient
+import sa.hudhud.api.client.okhttp.HudhudSdksOkHttpClient
 
 val client: HudhudSdksClient = HudhudSdksOkHttpClient.builder()
     .fromEnv()
@@ -349,10 +349,10 @@ The SDK consists of three artifacts:
 - `hudhud-sdks-kotlin-core`
   - Contains core SDK logic
   - Does not depend on [OkHttp](https://square.github.io/okhttp)
-  - Exposes [`HudhudSdksClient`](hudhud-sdks-kotlin-core/src/main/kotlin/com/hudhud_sdks/api/client/HudhudSdksClient.kt), [`HudhudSdksClientAsync`](hudhud-sdks-kotlin-core/src/main/kotlin/com/hudhud_sdks/api/client/HudhudSdksClientAsync.kt), [`HudhudSdksClientImpl`](hudhud-sdks-kotlin-core/src/main/kotlin/com/hudhud_sdks/api/client/HudhudSdksClientImpl.kt), and [`HudhudSdksClientAsyncImpl`](hudhud-sdks-kotlin-core/src/main/kotlin/com/hudhud_sdks/api/client/HudhudSdksClientAsyncImpl.kt), all of which can work with any HTTP client
+  - Exposes [`HudhudSdksClient`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/client/HudhudSdksClient.kt), [`HudhudSdksClientAsync`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/client/HudhudSdksClientAsync.kt), [`HudhudSdksClientImpl`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/client/HudhudSdksClientImpl.kt), and [`HudhudSdksClientAsyncImpl`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/client/HudhudSdksClientAsyncImpl.kt), all of which can work with any HTTP client
 - `hudhud-sdks-kotlin-client-okhttp`
   - Depends on [OkHttp](https://square.github.io/okhttp)
-  - Exposes [`HudhudSdksOkHttpClient`](hudhud-sdks-kotlin-client-okhttp/src/main/kotlin/com/hudhud_sdks/api/client/okhttp/HudhudSdksOkHttpClient.kt) and [`HudhudSdksOkHttpClientAsync`](hudhud-sdks-kotlin-client-okhttp/src/main/kotlin/com/hudhud_sdks/api/client/okhttp/HudhudSdksOkHttpClientAsync.kt), which provide a way to construct [`HudhudSdksClientImpl`](hudhud-sdks-kotlin-core/src/main/kotlin/com/hudhud_sdks/api/client/HudhudSdksClientImpl.kt) and [`HudhudSdksClientAsyncImpl`](hudhud-sdks-kotlin-core/src/main/kotlin/com/hudhud_sdks/api/client/HudhudSdksClientAsyncImpl.kt), respectively, using OkHttp
+  - Exposes [`HudhudSdksOkHttpClient`](hudhud-sdks-kotlin-client-okhttp/src/main/kotlin/sa/hudhud/api/client/okhttp/HudhudSdksOkHttpClient.kt) and [`HudhudSdksOkHttpClientAsync`](hudhud-sdks-kotlin-client-okhttp/src/main/kotlin/sa/hudhud/api/client/okhttp/HudhudSdksOkHttpClientAsync.kt), which provide a way to construct [`HudhudSdksClientImpl`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/client/HudhudSdksClientImpl.kt) and [`HudhudSdksClientAsyncImpl`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/client/HudhudSdksClientAsyncImpl.kt), respectively, using OkHttp
 - `hudhud-sdks-kotlin`
   - Depends on and exposes the APIs of both `hudhud-sdks-kotlin-core` and `hudhud-sdks-kotlin-client-okhttp`
   - Does not have its own logic
@@ -367,16 +367,16 @@ This structure allows replacing the SDK's default HTTP client without pulling in
 To use a customized `OkHttpClient`:
 
 1. Replace your [`hudhud-sdks-kotlin` dependency](#installation) with `hudhud-sdks-kotlin-core`
-2. Copy `hudhud-sdks-kotlin-client-okhttp`'s [`OkHttpClient`](hudhud-sdks-kotlin-client-okhttp/src/main/kotlin/com/hudhud_sdks/api/client/okhttp/OkHttpClient.kt) class into your code and customize it
-3. Construct [`HudhudSdksClientImpl`](hudhud-sdks-kotlin-core/src/main/kotlin/com/hudhud_sdks/api/client/HudhudSdksClientImpl.kt) or [`HudhudSdksClientAsyncImpl`](hudhud-sdks-kotlin-core/src/main/kotlin/com/hudhud_sdks/api/client/HudhudSdksClientAsyncImpl.kt), similarly to [`HudhudSdksOkHttpClient`](hudhud-sdks-kotlin-client-okhttp/src/main/kotlin/com/hudhud_sdks/api/client/okhttp/HudhudSdksOkHttpClient.kt) or [`HudhudSdksOkHttpClientAsync`](hudhud-sdks-kotlin-client-okhttp/src/main/kotlin/com/hudhud_sdks/api/client/okhttp/HudhudSdksOkHttpClientAsync.kt), using your customized client
+2. Copy `hudhud-sdks-kotlin-client-okhttp`'s [`OkHttpClient`](hudhud-sdks-kotlin-client-okhttp/src/main/kotlin/sa/hudhud/api/client/okhttp/OkHttpClient.kt) class into your code and customize it
+3. Construct [`HudhudSdksClientImpl`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/client/HudhudSdksClientImpl.kt) or [`HudhudSdksClientAsyncImpl`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/client/HudhudSdksClientAsyncImpl.kt), similarly to [`HudhudSdksOkHttpClient`](hudhud-sdks-kotlin-client-okhttp/src/main/kotlin/sa/hudhud/api/client/okhttp/HudhudSdksOkHttpClient.kt) or [`HudhudSdksOkHttpClientAsync`](hudhud-sdks-kotlin-client-okhttp/src/main/kotlin/sa/hudhud/api/client/okhttp/HudhudSdksOkHttpClientAsync.kt), using your customized client
 
 ### Completely custom HTTP client
 
 To use a completely custom HTTP client:
 
 1. Replace your [`hudhud-sdks-kotlin` dependency](#installation) with `hudhud-sdks-kotlin-core`
-2. Write a class that implements the [`HttpClient`](hudhud-sdks-kotlin-core/src/main/kotlin/com/hudhud_sdks/api/core/http/HttpClient.kt) interface
-3. Construct [`HudhudSdksClientImpl`](hudhud-sdks-kotlin-core/src/main/kotlin/com/hudhud_sdks/api/client/HudhudSdksClientImpl.kt) or [`HudhudSdksClientAsyncImpl`](hudhud-sdks-kotlin-core/src/main/kotlin/com/hudhud_sdks/api/client/HudhudSdksClientAsyncImpl.kt), similarly to [`HudhudSdksOkHttpClient`](hudhud-sdks-kotlin-client-okhttp/src/main/kotlin/com/hudhud_sdks/api/client/okhttp/HudhudSdksOkHttpClient.kt) or [`HudhudSdksOkHttpClientAsync`](hudhud-sdks-kotlin-client-okhttp/src/main/kotlin/com/hudhud_sdks/api/client/okhttp/HudhudSdksOkHttpClientAsync.kt), using your new client class
+2. Write a class that implements the [`HttpClient`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/core/http/HttpClient.kt) interface
+3. Construct [`HudhudSdksClientImpl`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/client/HudhudSdksClientImpl.kt) or [`HudhudSdksClientAsyncImpl`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/client/HudhudSdksClientAsyncImpl.kt), similarly to [`HudhudSdksOkHttpClient`](hudhud-sdks-kotlin-client-okhttp/src/main/kotlin/sa/hudhud/api/client/okhttp/HudhudSdksOkHttpClient.kt) or [`HudhudSdksOkHttpClientAsync`](hudhud-sdks-kotlin-client-okhttp/src/main/kotlin/sa/hudhud/api/client/okhttp/HudhudSdksOkHttpClientAsync.kt), using your new client class
 
 ## Undocumented API functionality
 
@@ -387,8 +387,8 @@ The SDK is typed for convenient usage of the documented API. However, it also su
 To set undocumented parameters, call the `putAdditionalHeader`, `putAdditionalQueryParam`, or `putAdditionalBodyProperty` methods on any `Params` class:
 
 ```kotlin
-import com.hudhud_sdks.api.core.JsonValue
-import com.hudhud_sdks.api.models.routing.RoutingCreateDistanceMatrixParams
+import sa.hudhud.api.core.JsonValue
+import sa.hudhud.api.models.routing.RoutingCreateDistanceMatrixParams
 
 val params: RoutingCreateDistanceMatrixParams = RoutingCreateDistanceMatrixParams.builder()
     .putAdditionalHeader("Secret-Header", "42")
@@ -399,18 +399,18 @@ val params: RoutingCreateDistanceMatrixParams = RoutingCreateDistanceMatrixParam
 
 These can be accessed on the built object later using the `_additionalHeaders()`, `_additionalQueryParams()`, and `_additionalBodyProperties()` methods.
 
-To set a documented parameter or property to an undocumented or not yet supported _value_, pass a [`JsonValue`](hudhud-sdks-kotlin-core/src/main/kotlin/com/hudhud_sdks/api/core/Values.kt) object to its setter:
+To set a documented parameter or property to an undocumented or not yet supported _value_, pass a [`JsonValue`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/core/Values.kt) object to its setter:
 
 ```kotlin
-import com.hudhud_sdks.api.models.routing.RoutingCreateDistanceMatrixParams
+import sa.hudhud.api.models.routing.RoutingCreateDistanceMatrixParams
 
 val params: RoutingCreateDistanceMatrixParams = RoutingCreateDistanceMatrixParams.builder().build()
 ```
 
-The most straightforward way to create a [`JsonValue`](hudhud-sdks-kotlin-core/src/main/kotlin/com/hudhud_sdks/api/core/Values.kt) is using its `from(...)` method:
+The most straightforward way to create a [`JsonValue`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/core/Values.kt) is using its `from(...)` method:
 
 ```kotlin
-import com.hudhud_sdks.api.core.JsonValue
+import sa.hudhud.api.core.JsonValue
 
 // Create primitive JSON values
 val nullValue: JsonValue = JsonValue.from(null)
@@ -447,10 +447,10 @@ val complexValue: JsonValue = JsonValue.from(mapOf(
 To access undocumented response properties, call the `_additionalProperties()` method:
 
 ```kotlin
-import com.hudhud_sdks.api.core.JsonBoolean
-import com.hudhud_sdks.api.core.JsonNull
-import com.hudhud_sdks.api.core.JsonNumber
-import com.hudhud_sdks.api.core.JsonValue
+import sa.hudhud.api.core.JsonBoolean
+import sa.hudhud.api.core.JsonNull
+import sa.hudhud.api.core.JsonNumber
+import sa.hudhud.api.core.JsonValue
 
 val additionalProperties: Map<String, JsonValue> = client.routing().createDistanceMatrix(params)._additionalProperties()
 val secretPropertyValue: JsonValue = additionalProperties.get("secretProperty")
@@ -467,8 +467,8 @@ val result = when (secretPropertyValue) {
 To access a property's raw JSON value, which may be undocumented, call its `_` prefixed method:
 
 ```kotlin
-import com.hudhud_sdks.api.core.JsonField
-import com.hudhud_sdks.api.models.routing.RoutingCreateDistanceMatrixParams
+import sa.hudhud.api.core.JsonField
+import sa.hudhud.api.models.routing.RoutingCreateDistanceMatrixParams
 
 val coordinates: JsonField<List<RoutingCreateDistanceMatrixParams.Coordinate>> = client.routing().createDistanceMatrix(params)._coordinates()
 
@@ -490,12 +490,12 @@ if (coordinates.isMissing()) {
 
 In rare cases, the API may return a response that doesn't match the expected type. For example, the SDK may expect a property to contain a `String`, but the API could return something else.
 
-By default, the SDK will not throw an exception in this case. It will throw [`HudhudSdksInvalidDataException`](hudhud-sdks-kotlin-core/src/main/kotlin/com/hudhud_sdks/api/errors/HudhudSdksInvalidDataException.kt) only if you directly access the property.
+By default, the SDK will not throw an exception in this case. It will throw [`HudhudSdksInvalidDataException`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/errors/HudhudSdksInvalidDataException.kt) only if you directly access the property.
 
 If you would prefer to check that the response is completely well-typed upfront, then either call `validate()`:
 
 ```kotlin
-import com.hudhud_sdks.api.models.routing.RoutingCreateDistanceMatrixResponse
+import sa.hudhud.api.models.routing.RoutingCreateDistanceMatrixResponse
 
 val response: RoutingCreateDistanceMatrixResponse = client.routing().createDistanceMatrix(params).validate()
 ```
@@ -503,7 +503,7 @@ val response: RoutingCreateDistanceMatrixResponse = client.routing().createDista
 Or configure the method call to validate the response using the `responseValidation` method:
 
 ```kotlin
-import com.hudhud_sdks.api.models.routing.RoutingCreateDistanceMatrixResponse
+import sa.hudhud.api.models.routing.RoutingCreateDistanceMatrixResponse
 
 val response: RoutingCreateDistanceMatrixResponse = client.routing().createDistanceMatrix(RequestOptions.builder().responseValidation(true).build())
 ```
@@ -511,8 +511,8 @@ val response: RoutingCreateDistanceMatrixResponse = client.routing().createDista
 Or configure the default for all method calls at the client level:
 
 ```kotlin
-import com.hudhud_sdks.api.client.HudhudSdksClient
-import com.hudhud_sdks.api.client.okhttp.HudhudSdksOkHttpClient
+import sa.hudhud.api.client.HudhudSdksClient
+import sa.hudhud.api.client.okhttp.HudhudSdksOkHttpClient
 
 val client: HudhudSdksClient = HudhudSdksOkHttpClient.builder()
     .fromEnv()
