@@ -8,7 +8,7 @@ repositories {
 
 allprojects {
     group = "sa.hudhud.api"
-    version = "0.0.1-alpha.0" // x-release-please-version
+    version = "0.1.0-alpha.1" // x-release-please-version
 }
 
 subprojects {
