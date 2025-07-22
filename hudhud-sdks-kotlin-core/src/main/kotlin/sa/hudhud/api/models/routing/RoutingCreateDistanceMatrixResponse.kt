@@ -206,6 +206,7 @@ private constructor(
     class Data
     private constructor(
         private val destinations: JsonField<List<MatrixItem>>,
+        private val distances: JsonField<List<List<Double>>>,
         private val durations: JsonField<List<List<Double>>>,
         private val sources: JsonField<List<MatrixItem>>,
         private val additionalProperties: MutableMap<String, JsonValue>,
@@ -216,19 +217,28 @@ private constructor(
             @JsonProperty("destinations")
             @ExcludeMissing
             destinations: JsonField<List<MatrixItem>> = JsonMissing.of(),
+            @JsonProperty("distances")
+            @ExcludeMissing
+            distances: JsonField<List<List<Double>>> = JsonMissing.of(),
             @JsonProperty("durations")
             @ExcludeMissing
             durations: JsonField<List<List<Double>>> = JsonMissing.of(),
             @JsonProperty("sources")
             @ExcludeMissing
             sources: JsonField<List<MatrixItem>> = JsonMissing.of(),
-        ) : this(destinations, durations, sources, mutableMapOf())
+        ) : this(destinations, distances, durations, sources, mutableMapOf())
 
         /**
          * @throws HudhudSdksInvalidDataException if the JSON field has an unexpected type (e.g. if
          *   the server responded with an unexpected value).
          */
         fun destinations(): List<MatrixItem>? = destinations.getNullable("destinations")
+
+        /**
+         * @throws HudhudSdksInvalidDataException if the JSON field has an unexpected type (e.g. if
+         *   the server responded with an unexpected value).
+         */
+        fun distances(): List<List<Double>>? = distances.getNullable("distances")
 
         /**
          * @throws HudhudSdksInvalidDataException if the JSON field has an unexpected type (e.g. if
@@ -251,6 +261,15 @@ private constructor(
         @JsonProperty("destinations")
         @ExcludeMissing
         fun _destinations(): JsonField<List<MatrixItem>> = destinations
+
+        /**
+         * Returns the raw JSON value of [distances].
+         *
+         * Unlike [distances], this method doesn't throw if the JSON field has an unexpected type.
+         */
+        @JsonProperty("distances")
+        @ExcludeMissing
+        fun _distances(): JsonField<List<List<Double>>> = distances
 
         /**
          * Returns the raw JSON value of [durations].
@@ -292,12 +311,14 @@ private constructor(
         class Builder internal constructor() {
 
             private var destinations: JsonField<MutableList<MatrixItem>>? = null
+            private var distances: JsonField<MutableList<List<Double>>>? = null
             private var durations: JsonField<MutableList<List<Double>>>? = null
             private var sources: JsonField<MutableList<MatrixItem>>? = null
             private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
 
             internal fun from(data: Data) = apply {
                 destinations = data.destinations.map { it.toMutableList() }
+                distances = data.distances.map { it.toMutableList() }
                 durations = data.durations.map { it.toMutableList() }
                 sources = data.sources.map { it.toMutableList() }
                 additionalProperties = data.additionalProperties.toMutableMap()
@@ -326,6 +347,31 @@ private constructor(
                 destinations =
                     (destinations ?: JsonField.of(mutableListOf())).also {
                         checkKnown("destinations", it).add(destination)
+                    }
+            }
+
+            fun distances(distances: List<List<Double>>) = distances(JsonField.of(distances))
+
+            /**
+             * Sets [Builder.distances] to an arbitrary JSON value.
+             *
+             * You should usually call [Builder.distances] with a well-typed `List<List<Double>>`
+             * value instead. This method is primarily for setting the field to an undocumented or
+             * not yet supported value.
+             */
+            fun distances(distances: JsonField<List<List<Double>>>) = apply {
+                this.distances = distances.map { it.toMutableList() }
+            }
+
+            /**
+             * Adds a single [List<Double>] to [distances].
+             *
+             * @throws IllegalStateException if the field was previously set to a non-list.
+             */
+            fun addDistance(distance: List<Double>) = apply {
+                distances =
+                    (distances ?: JsonField.of(mutableListOf())).also {
+                        checkKnown("distances", it).add(distance)
                     }
             }
 
@@ -406,6 +452,7 @@ private constructor(
             fun build(): Data =
                 Data(
                     (destinations ?: JsonMissing.of()).map { it.toImmutable() },
+                    (distances ?: JsonMissing.of()).map { it.toImmutable() },
                     (durations ?: JsonMissing.of()).map { it.toImmutable() },
                     (sources ?: JsonMissing.of()).map { it.toImmutable() },
                     additionalProperties.toMutableMap(),
@@ -420,6 +467,7 @@ private constructor(
             }
 
             destinations()?.forEach { it.validate() }
+            distances()
             durations()
             sources()?.forEach { it.validate() }
             validated = true
@@ -441,6 +489,7 @@ private constructor(
          */
         internal fun validity(): Int =
             (destinations.asKnown()?.sumOf { it.validity().toInt() } ?: 0) +
+                (distances.asKnown()?.sumOf { it.size.toInt() } ?: 0) +
                 (durations.asKnown()?.sumOf { it.size.toInt() } ?: 0) +
                 (sources.asKnown()?.sumOf { it.validity().toInt() } ?: 0)
 
@@ -449,17 +498,17 @@ private constructor(
                 return true
             }
 
-            return /* spotless:off */ other is Data && destinations == other.destinations && durations == other.durations && sources == other.sources && additionalProperties == other.additionalProperties /* spotless:on */
+            return /* spotless:off */ other is Data && destinations == other.destinations && distances == other.distances && durations == other.durations && sources == other.sources && additionalProperties == other.additionalProperties /* spotless:on */
         }
 
         /* spotless:off */
-        private val hashCode: Int by lazy { Objects.hash(destinations, durations, sources, additionalProperties) }
+        private val hashCode: Int by lazy { Objects.hash(destinations, distances, durations, sources, additionalProperties) }
         /* spotless:on */
 
         override fun hashCode(): Int = hashCode
 
         override fun toString() =
-            "Data{destinations=$destinations, durations=$durations, sources=$sources, additionalProperties=$additionalProperties}"
+            "Data{destinations=$destinations, distances=$distances, durations=$durations, sources=$sources, additionalProperties=$additionalProperties}"
     }
 
     override fun equals(other: Any?): Boolean {
