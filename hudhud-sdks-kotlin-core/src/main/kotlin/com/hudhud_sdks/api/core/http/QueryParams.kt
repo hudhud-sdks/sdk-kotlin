@@ -2,6 +2,14 @@
 
 package com.hudhud_sdks.api.core.http
 
+import com.hudhud_sdks.api.core.JsonArray
+import com.hudhud_sdks.api.core.JsonBoolean
+import com.hudhud_sdks.api.core.JsonMissing
+import com.hudhud_sdks.api.core.JsonNull
+import com.hudhud_sdks.api.core.JsonNumber
+import com.hudhud_sdks.api.core.JsonObject
+import com.hudhud_sdks.api.core.JsonString
+import com.hudhud_sdks.api.core.JsonValue
 import com.hudhud_sdks.api.core.toImmutable
 
 class QueryParams private constructor(private val map: Map<String, List<String>>, val size: Int) {
@@ -23,6 +31,39 @@ class QueryParams private constructor(private val map: Map<String, List<String>>
 
         private val map: MutableMap<String, MutableList<String>> = mutableMapOf()
         private var size: Int = 0
+
+        fun put(key: String, value: JsonValue): Builder = apply {
+            when (value) {
+                is JsonMissing,
+                is JsonNull -> {}
+                is JsonBoolean -> put(key, value.value.toString())
+                is JsonNumber -> put(key, value.value.toString())
+                is JsonString -> put(key, value.value)
+                is JsonArray ->
+                    put(
+                        key,
+                        value.values
+                            .asSequence()
+                            .mapNotNull {
+                                when (it) {
+                                    is JsonMissing,
+                                    is JsonNull -> null
+                                    is JsonBoolean -> it.value.toString()
+                                    is JsonNumber -> it.value.toString()
+                                    is JsonString -> it.value
+                                    is JsonArray,
+                                    is JsonObject ->
+                                        throw IllegalArgumentException(
+                                            "Cannot comma separate non-primitives in query params"
+                                        )
+                                }
+                            }
+                            .joinToString(","),
+                    )
+                is JsonObject ->
+                    value.values.forEach { (nestedKey, value) -> put("$key[$nestedKey]", value) }
+            }
+        }
 
         fun put(key: String, value: String) = apply {
             map.getOrPut(key) { mutableListOf() }.add(value)
