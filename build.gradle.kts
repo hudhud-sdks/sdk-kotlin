@@ -7,7 +7,7 @@ repositories {
 }
 
 allprojects {
-    group = "com.hudhud_sdks.api"
+    group = "sa.hudhud.api"
     version = "0.0.1-alpha.0" // x-release-please-version
 }
 
