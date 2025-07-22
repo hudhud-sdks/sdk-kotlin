@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.2 (2025-07-22)
+
+Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/hudhud-sdks/sdk-kotlin/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
+
+### Features
+
+* **api:** update via SDK Studio ([6089bc1](https://github.com/hudhud-sdks/sdk-kotlin/commit/6089bc1b028915332ee5d438bf5a8aaee05dd38f))
+
 ## 0.1.0-alpha.1 (2025-07-22)
 
 Full Changelog: [v0.0.1-alpha.0...v0.1.0-alpha.1](https://github.com/hudhud-sdks/sdk-kotlin/compare/v0.0.1-alpha.0...v0.1.0-alpha.1)
