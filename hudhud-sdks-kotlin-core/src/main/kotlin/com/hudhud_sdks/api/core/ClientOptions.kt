@@ -214,8 +214,11 @@ private constructor(
         fun timeout(): Timeout = timeout
 
         fun fromEnv() = apply {
-            System.getenv("HUDHUD_SDKS_BASE_URL")?.let { baseUrl(it) }
-            System.getenv("HUDHUD_SDKS_API_KEY")?.let { apiKey(it) }
+            (System.getProperty("hudhudsdks.baseUrl") ?: System.getenv("HUDHUD_SDKS_BASE_URL"))
+                ?.let { baseUrl(it) }
+            (System.getProperty("hudhudsdks.apiKey") ?: System.getenv("HUDHUD_SDKS_API_KEY"))?.let {
+                apiKey(it)
+            }
         }
 
         /**

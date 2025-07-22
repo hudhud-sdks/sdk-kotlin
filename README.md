@@ -51,7 +51,8 @@ import com.hudhud_sdks.api.client.okhttp.HudhudSdksOkHttpClient
 import com.hudhud_sdks.api.models.routing.RoutingCreateDistanceMatrixParams
 import com.hudhud_sdks.api.models.routing.RoutingCreateDistanceMatrixResponse
 
-// Configures using the `HUDHUD_SDKS_API_KEY` and `HUDHUD_SDKS_BASE_URL` environment variables
+// Configures using the `hudhudsdks.apiKey` and `hudhudsdks.baseUrl` system properties
+// Or configures using the `HUDHUD_SDKS_API_KEY` and `HUDHUD_SDKS_BASE_URL` environment variables
 val client: HudhudSdksClient = HudhudSdksOkHttpClient.fromEnv()
 
 val response: RoutingCreateDistanceMatrixResponse = client.routing().createDistanceMatrix()
@@ -59,13 +60,14 @@ val response: RoutingCreateDistanceMatrixResponse = client.routing().createDista
 
 ## Client configuration
 
-Configure the client using environment variables:
+Configure the client using system properties or environment variables:
 
 ```kotlin
 import com.hudhud_sdks.api.client.HudhudSdksClient
 import com.hudhud_sdks.api.client.okhttp.HudhudSdksOkHttpClient
 
-// Configures using the `HUDHUD_SDKS_API_KEY` and `HUDHUD_SDKS_BASE_URL` environment variables
+// Configures using the `hudhudsdks.apiKey` and `hudhudsdks.baseUrl` system properties
+// Or configures using the `HUDHUD_SDKS_API_KEY` and `HUDHUD_SDKS_BASE_URL` environment variables
 val client: HudhudSdksClient = HudhudSdksOkHttpClient.fromEnv()
 ```
 
@@ -87,7 +89,8 @@ import com.hudhud_sdks.api.client.HudhudSdksClient
 import com.hudhud_sdks.api.client.okhttp.HudhudSdksOkHttpClient
 
 val client: HudhudSdksClient = HudhudSdksOkHttpClient.builder()
-    // Configures using the `HUDHUD_SDKS_API_KEY` and `HUDHUD_SDKS_BASE_URL` environment variables
+    // Configures using the `hudhudsdks.apiKey` and `hudhudsdks.baseUrl` system properties
+    Or configures using the `HUDHUD_SDKS_API_KEY` and `HUDHUD_SDKS_BASE_URL` environment variables
     .fromEnv()
     .apiKey("My API Key")
     .build()
@@ -95,10 +98,12 @@ val client: HudhudSdksClient = HudhudSdksOkHttpClient.builder()
 
 See this table for the available options:
 
-| Setter    | Environment variable   | Required | Default value              |
-| --------- | ---------------------- | -------- | -------------------------- |
-| `apiKey`  | `HUDHUD_SDKS_API_KEY`  | true     | -                          |
-| `baseUrl` | `HUDHUD_SDKS_BASE_URL` | true     | `"https://b.hudhud.sa/v1"` |
+| Setter    | System property      | Environment variable   | Required | Default value              |
+| --------- | -------------------- | ---------------------- | -------- | -------------------------- |
+| `apiKey`  | `hudhudsdks.apiKey`  | `HUDHUD_SDKS_API_KEY`  | true     | -                          |
+| `baseUrl` | `hudhudsdks.baseUrl` | `HUDHUD_SDKS_BASE_URL` | true     | `"https://b.hudhud.sa/v1"` |
+
+System properties take precedence over environment variables.
 
 > [!TIP]
 > Don't create more than one client in the same application. Each client has a connection pool and
@@ -143,7 +148,8 @@ import com.hudhud_sdks.api.client.okhttp.HudhudSdksOkHttpClient
 import com.hudhud_sdks.api.models.routing.RoutingCreateDistanceMatrixParams
 import com.hudhud_sdks.api.models.routing.RoutingCreateDistanceMatrixResponse
 
-// Configures using the `HUDHUD_SDKS_API_KEY` and `HUDHUD_SDKS_BASE_URL` environment variables
+// Configures using the `hudhudsdks.apiKey` and `hudhudsdks.baseUrl` system properties
+// Or configures using the `HUDHUD_SDKS_API_KEY` and `HUDHUD_SDKS_BASE_URL` environment variables
 val client: HudhudSdksClient = HudhudSdksOkHttpClient.fromEnv()
 
 val response: RoutingCreateDistanceMatrixResponse = client.async().routing().createDistanceMatrix()
@@ -157,7 +163,8 @@ import com.hudhud_sdks.api.client.okhttp.HudhudSdksOkHttpClientAsync
 import com.hudhud_sdks.api.models.routing.RoutingCreateDistanceMatrixParams
 import com.hudhud_sdks.api.models.routing.RoutingCreateDistanceMatrixResponse
 
-// Configures using the `HUDHUD_SDKS_API_KEY` and `HUDHUD_SDKS_BASE_URL` environment variables
+// Configures using the `hudhudsdks.apiKey` and `hudhudsdks.baseUrl` system properties
+// Or configures using the `HUDHUD_SDKS_API_KEY` and `HUDHUD_SDKS_BASE_URL` environment variables
 val client: HudhudSdksClientAsync = HudhudSdksOkHttpClientAsync.fromEnv()
 
 val response: RoutingCreateDistanceMatrixResponse = client.routing().createDistanceMatrix()
