@@ -90,7 +90,7 @@ import sa.hudhud.api.client.okhttp.HudhudSdksOkHttpClient
 
 val client: HudhudSdksClient = HudhudSdksOkHttpClient.builder()
     // Configures using the `hudhudsdks.apiKey` and `hudhudsdks.baseUrl` system properties
-    Or configures using the `HUDHUD_SDKS_API_KEY` and `HUDHUD_SDKS_BASE_URL` environment variables
+    // Or configures using the `HUDHUD_SDKS_API_KEY` and `HUDHUD_SDKS_BASE_URL` environment variables
     .fromEnv()
     .apiKey("My API Key")
     .build()
