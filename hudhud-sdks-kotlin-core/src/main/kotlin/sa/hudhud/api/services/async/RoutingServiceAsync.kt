@@ -29,7 +29,7 @@ interface RoutingServiceAsync {
         requestOptions: RequestOptions = RequestOptions.none(),
     ): RoutingCreateDistanceMatrixResponse
 
-    /** @see [createDistanceMatrix] */
+    /** @see createDistanceMatrix */
     suspend fun createDistanceMatrix(
         requestOptions: RequestOptions
     ): RoutingCreateDistanceMatrixResponse =
@@ -59,7 +59,7 @@ interface RoutingServiceAsync {
             requestOptions: RequestOptions = RequestOptions.none(),
         ): HttpResponseFor<RoutingCreateDistanceMatrixResponse>
 
-        /** @see [createDistanceMatrix] */
+        /** @see createDistanceMatrix */
         @MustBeClosed
         suspend fun createDistanceMatrix(
             requestOptions: RequestOptions
