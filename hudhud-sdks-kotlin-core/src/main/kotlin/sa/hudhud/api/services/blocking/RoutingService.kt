@@ -29,7 +29,7 @@ interface RoutingService {
         requestOptions: RequestOptions = RequestOptions.none(),
     ): RoutingCreateDistanceMatrixResponse
 
-    /** @see [createDistanceMatrix] */
+    /** @see createDistanceMatrix */
     fun createDistanceMatrix(requestOptions: RequestOptions): RoutingCreateDistanceMatrixResponse =
         createDistanceMatrix(RoutingCreateDistanceMatrixParams.none(), requestOptions)
 
@@ -53,7 +53,7 @@ interface RoutingService {
             requestOptions: RequestOptions = RequestOptions.none(),
         ): HttpResponseFor<RoutingCreateDistanceMatrixResponse>
 
-        /** @see [createDistanceMatrix] */
+        /** @see createDistanceMatrix */
         @MustBeClosed
         fun createDistanceMatrix(
             requestOptions: RequestOptions
