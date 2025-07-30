@@ -217,6 +217,8 @@ The SDK throws custom unchecked exception types:
 
 - [`HudhudSdksIoException`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/errors/HudhudSdksIoException.kt): I/O networking errors.
 
+- [`HudhudSdksRetryableException`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/errors/HudhudSdksRetryableException.kt): Generic error indicating a failure that could be retried by the client.
+
 - [`HudhudSdksInvalidDataException`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/errors/HudhudSdksInvalidDataException.kt): Failure to interpret successfully parsed data. For example, when accessing a property that's supposed to be required, but the API unexpectedly omitted it from the response.
 
 - [`HudhudSdksException`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/errors/HudhudSdksException.kt): Base class for all exceptions. Most errors will result in one of the previously mentioned ones, but completely generic errors may be thrown using the base class.
