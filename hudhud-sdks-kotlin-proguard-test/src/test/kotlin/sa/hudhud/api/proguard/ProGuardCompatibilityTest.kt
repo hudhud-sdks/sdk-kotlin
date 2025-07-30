@@ -5,7 +5,6 @@ package sa.hudhud.api.proguard
 import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import sa.hudhud.api.client.okhttp.HudhudSdksOkHttpClient
 import sa.hudhud.api.core.jsonMapper
@@ -42,7 +41,6 @@ internal class ProGuardCompatibilityTest {
         assertThat(client.routing()).isNotNull()
     }
 
-    @Disabled("skipped: tests are disabled for the time being")
     @Test
     fun matrixItemRoundtrip() {
         val jsonMapper = jsonMapper()
