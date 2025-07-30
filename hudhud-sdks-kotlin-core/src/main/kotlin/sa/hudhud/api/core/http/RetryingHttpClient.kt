@@ -17,6 +17,7 @@ import kotlinx.coroutines.delay
 import sa.hudhud.api.core.RequestOptions
 import sa.hudhud.api.core.checkRequired
 import sa.hudhud.api.errors.HudhudSdksIoException
+import sa.hudhud.api.errors.HudhudSdksRetryableException
 
 class RetryingHttpClient
 private constructor(
@@ -159,9 +160,10 @@ private constructor(
     }
 
     private fun shouldRetry(throwable: Throwable): Boolean =
-        // Only retry IOException and HudhudSdksIoException, other exceptions are not intended to be
-        // retried.
-        throwable is IOException || throwable is HudhudSdksIoException
+        // Only retry known retryable exceptions, other exceptions are not intended to be retried.
+        throwable is IOException ||
+            throwable is HudhudSdksIoException ||
+            throwable is HudhudSdksRetryableException
 
     private fun getRetryBackoffDuration(retries: Int, response: HttpResponse?): Duration {
         // About the Retry-After header:
