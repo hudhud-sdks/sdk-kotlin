@@ -4,13 +4,11 @@ package sa.hudhud.api.models.routing
 
 import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import sa.hudhud.api.core.jsonMapper
 
 internal class RoutingCreateDistanceMatrixResponseTest {
 
-    @Disabled("skipped: tests are disabled for the time being")
     @Test
     fun create() {
         val routingCreateDistanceMatrixResponse =
@@ -60,7 +58,6 @@ internal class RoutingCreateDistanceMatrixResponseTest {
         assertThat(routingCreateDistanceMatrixResponse.ok()).isEqualTo(true)
     }
 
-    @Disabled("skipped: tests are disabled for the time being")
     @Test
     fun roundtrip() {
         val jsonMapper = jsonMapper()
