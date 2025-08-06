@@ -9,7 +9,7 @@ dependencies {
 
 application {
     // Use `./gradlew :hudhud-sdks-kotlin-example:run` to run `Main`
-    // Use `./gradlew :hudhud-sdks-kotlin-example:run -Dexample=Something` to run `SomethingExample`
+    // Use `./gradlew :hudhud-sdks-kotlin-example:run -Pexample=Something` to run `SomethingExample`
     mainClass = "sa.hudhud.api.example.${
         if (project.hasProperty("example"))
             "${project.property("example")}ExampleKt"
