@@ -498,12 +498,17 @@ private constructor(
                 return true
             }
 
-            return /* spotless:off */ other is Data && destinations == other.destinations && distances == other.distances && durations == other.durations && sources == other.sources && additionalProperties == other.additionalProperties /* spotless:on */
+            return other is Data &&
+                destinations == other.destinations &&
+                distances == other.distances &&
+                durations == other.durations &&
+                sources == other.sources &&
+                additionalProperties == other.additionalProperties
         }
 
-        /* spotless:off */
-        private val hashCode: Int by lazy { Objects.hash(destinations, distances, durations, sources, additionalProperties) }
-        /* spotless:on */
+        private val hashCode: Int by lazy {
+            Objects.hash(destinations, distances, durations, sources, additionalProperties)
+        }
 
         override fun hashCode(): Int = hashCode
 
@@ -516,12 +521,14 @@ private constructor(
             return true
         }
 
-        return /* spotless:off */ other is RoutingCreateDistanceMatrixResponse && data == other.data && error == other.error && ok == other.ok && additionalProperties == other.additionalProperties /* spotless:on */
+        return other is RoutingCreateDistanceMatrixResponse &&
+            data == other.data &&
+            error == other.error &&
+            ok == other.ok &&
+            additionalProperties == other.additionalProperties
     }
 
-    /* spotless:off */
     private val hashCode: Int by lazy { Objects.hash(data, error, ok, additionalProperties) }
-    /* spotless:on */
 
     override fun hashCode(): Int = hashCode
 
