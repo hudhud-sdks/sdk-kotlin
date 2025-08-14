@@ -1,7 +1,14 @@
 rootProject.name = "hudhud-sdks-kotlin-root"
 
-include("hudhud-sdks-kotlin")
-include("hudhud-sdks-kotlin-client-okhttp")
-include("hudhud-sdks-kotlin-core")
-include("hudhud-sdks-kotlin-proguard-test")
-include("hudhud-sdks-kotlin-example")
+val projectNames = rootDir.listFiles()
+    ?.asSequence()
+    .orEmpty()
+    .filter { file ->
+        file.isDirectory &&
+        file.name.startsWith("hudhud-sdks-kotlin") &&
+        file.listFiles()?.asSequence().orEmpty().any { it.name == "build.gradle.kts" }
+    }
+    .map { it.name }
+    .toList()
+println("projects: $projectNames")
+projectNames.forEach { include(it) }
