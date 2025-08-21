@@ -37,7 +37,7 @@ class HudhudSdksClientAsyncImpl(private val clientOptions: ClientOptions) : Hudh
 
     override fun routing(): RoutingServiceAsync = routing
 
-    override fun close() = clientOptions.httpClient.close()
+    override fun close() = clientOptions.close()
 
     class WithRawResponseImpl internal constructor(private val clientOptions: ClientOptions) :
         HudhudSdksClientAsync.WithRawResponse {
