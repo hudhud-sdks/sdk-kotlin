@@ -14,6 +14,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import sa.hudhud.api.client.okhttp.OkHttpClient
 import sa.hudhud.api.core.RequestOptions
+import sa.hudhud.api.core.Sleeper
 import sa.hudhud.api.errors.HudhudSdksRetryableException
 
 @WireMockTest
@@ -289,11 +290,13 @@ internal class RetryingHttpClientTest {
                 .httpClient(failingHttpClient)
                 .maxRetries(2)
                 .sleeper(
-                    object : RetryingHttpClient.Sleeper {
+                    object : Sleeper {
 
                         override fun sleep(duration: Duration) {}
 
                         override suspend fun sleepAsync(duration: Duration) {}
+
+                        override fun close() {}
                     }
                 )
                 .build()
@@ -327,11 +330,13 @@ internal class RetryingHttpClientTest {
             .httpClient(httpClient)
             // Use a no-op `Sleeper` to make the test fast.
             .sleeper(
-                object : RetryingHttpClient.Sleeper {
+                object : Sleeper {
 
                     override fun sleep(duration: Duration) {}
 
                     override suspend fun sleepAsync(duration: Duration) {}
+
+                    override fun close() {}
                 }
             )
 

@@ -12,6 +12,7 @@ import javax.net.ssl.X509TrustManager
 import sa.hudhud.api.client.HudhudSdksClient
 import sa.hudhud.api.client.HudhudSdksClientImpl
 import sa.hudhud.api.core.ClientOptions
+import sa.hudhud.api.core.Sleeper
 import sa.hudhud.api.core.Timeout
 import sa.hudhud.api.core.http.Headers
 import sa.hudhud.api.core.http.HttpClient
@@ -102,6 +103,17 @@ class HudhudSdksOkHttpClient private constructor() {
          * needs to be overridden.
          */
         fun jsonMapper(jsonMapper: JsonMapper) = apply { clientOptions.jsonMapper(jsonMapper) }
+
+        /**
+         * The interface to use for delaying execution, like during retries.
+         *
+         * This is primarily useful for using fake delays in tests.
+         *
+         * Defaults to real execution delays.
+         *
+         * This class takes ownership of the sleeper and closes it when closed.
+         */
+        fun sleeper(sleeper: Sleeper) = apply { clientOptions.sleeper(sleeper) }
 
         /**
          * The clock to use for operations that require timing, like retries.
