@@ -350,12 +350,13 @@ private constructor(
                 return true
             }
 
-            return /* spotless:off */ other is Location && lat == other.lat && lon == other.lon && additionalProperties == other.additionalProperties /* spotless:on */
+            return other is Location &&
+                lat == other.lat &&
+                lon == other.lon &&
+                additionalProperties == other.additionalProperties
         }
 
-        /* spotless:off */
         private val hashCode: Int by lazy { Objects.hash(lat, lon, additionalProperties) }
-        /* spotless:on */
 
         override fun hashCode(): Int = hashCode
 
@@ -368,12 +369,13 @@ private constructor(
             return true
         }
 
-        return /* spotless:off */ other is MatrixItem && distance == other.distance && location == other.location && additionalProperties == other.additionalProperties /* spotless:on */
+        return other is MatrixItem &&
+            distance == other.distance &&
+            location == other.location &&
+            additionalProperties == other.additionalProperties
     }
 
-    /* spotless:off */
     private val hashCode: Int by lazy { Objects.hash(distance, location, additionalProperties) }
-    /* spotless:on */
 
     override fun hashCode(): Int = hashCode
 

@@ -2,8 +2,8 @@
 
 <!-- x-release-please-start-version -->
 
-[![Maven Central](https://img.shields.io/maven-central/v/sa.hudhud.api/hudhud-sdks-kotlin)](https://central.sonatype.com/artifact/sa.hudhud.api/hudhud-sdks-kotlin/0.1.0-alpha.2)
-[![javadoc](https://javadoc.io/badge2/sa.hudhud.api/hudhud-sdks-kotlin/0.1.0-alpha.2/javadoc.svg)](https://javadoc.io/doc/sa.hudhud.api/hudhud-sdks-kotlin/0.1.0-alpha.2)
+[![Maven Central](https://img.shields.io/maven-central/v/sa.hudhud.api/hudhud-sdks-kotlin)](https://central.sonatype.com/artifact/sa.hudhud.api/hudhud-sdks-kotlin/0.1.0-alpha.3)
+[![javadoc](https://javadoc.io/badge2/sa.hudhud.api/hudhud-sdks-kotlin/0.1.0-alpha.3/javadoc.svg)](https://javadoc.io/doc/sa.hudhud.api/hudhud-sdks-kotlin/0.1.0-alpha.3)
 
 <!-- x-release-please-end -->
 
@@ -13,7 +13,7 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 <!-- x-release-please-start-version -->
 
-KDocs are available on [javadoc.io](https://javadoc.io/doc/sa.hudhud.api/hudhud-sdks-kotlin/0.1.0-alpha.2).
+KDocs are available on [javadoc.io](https://javadoc.io/doc/sa.hudhud.api/hudhud-sdks-kotlin/0.1.0-alpha.3).
 
 <!-- x-release-please-end -->
 
@@ -24,7 +24,7 @@ KDocs are available on [javadoc.io](https://javadoc.io/doc/sa.hudhud.api/hudhud-
 ### Gradle
 
 ```kotlin
-implementation("sa.hudhud.api:hudhud-sdks-kotlin:0.1.0-alpha.2")
+implementation("sa.hudhud.api:hudhud-sdks-kotlin:0.1.0-alpha.3")
 ```
 
 ### Maven
@@ -33,7 +33,7 @@ implementation("sa.hudhud.api:hudhud-sdks-kotlin:0.1.0-alpha.2")
 <dependency>
   <groupId>sa.hudhud.api</groupId>
   <artifactId>hudhud-sdks-kotlin</artifactId>
-  <version>0.1.0-alpha.2</version>
+  <version>0.1.0-alpha.3</version>
 </dependency>
 ```
 
@@ -90,7 +90,7 @@ import sa.hudhud.api.client.okhttp.HudhudSdksOkHttpClient
 
 val client: HudhudSdksClient = HudhudSdksOkHttpClient.builder()
     // Configures using the `hudhudsdks.apiKey` and `hudhudsdks.baseUrl` system properties
-    Or configures using the `HUDHUD_SDKS_API_KEY` and `HUDHUD_SDKS_BASE_URL` environment variables
+    // Or configures using the `HUDHUD_SDKS_API_KEY` and `HUDHUD_SDKS_BASE_URL` environment variables
     .fromEnv()
     .apiKey("My API Key")
     .build()
@@ -217,6 +217,8 @@ The SDK throws custom unchecked exception types:
 
 - [`HudhudSdksIoException`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/errors/HudhudSdksIoException.kt): I/O networking errors.
 
+- [`HudhudSdksRetryableException`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/errors/HudhudSdksRetryableException.kt): Generic error indicating a failure that could be retried by the client.
+
 - [`HudhudSdksInvalidDataException`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/errors/HudhudSdksInvalidDataException.kt): Failure to interpret successfully parsed data. For example, when accessing a property that's supposed to be required, but the API unexpectedly omitted it from the response.
 
 - [`HudhudSdksException`](hudhud-sdks-kotlin-core/src/main/kotlin/sa/hudhud/api/errors/HudhudSdksException.kt): Base class for all exceptions. Most errors will result in one of the previously mentioned ones, but completely generic errors may be thrown using the base class.
@@ -237,6 +239,12 @@ Or to `debug` for more verbose logging:
 $ export HUDHUD_SDKS_LOG=debug
 ```
 
+## ProGuard and R8
+
+Although the SDK uses reflection, it is still usable with [ProGuard](https://github.com/Guardsquare/proguard) and [R8](https://developer.android.com/topic/performance/app-optimization/enable-app-optimization) because `hudhud-sdks-kotlin-core` is published with a [configuration file](hudhud-sdks-kotlin-core/src/main/resources/META-INF/proguard/hudhud-sdks-kotlin-core.pro) containing [keep rules](https://www.guardsquare.com/manual/configuration/usage).
+
+ProGuard and R8 should automatically detect and use the published rules, but you can also manually copy the keep rules if necessary.
+
 ## Jackson
 
 The SDK depends on [Jackson](https://github.com/FasterXML/jackson) for JSON serialization/deserialization. It is compatible with version 2.13.4 or higher, but depends on version 2.18.2 by default.
@@ -252,7 +260,7 @@ If the SDK threw an exception, but you're _certain_ the version is compatible, t
 
 ### Retries
 
-The SDK automatically retries 2 times by default, with a short exponential backoff.
+The SDK automatically retries 2 times by default, with a short exponential backoff between requests.
 
 Only the following error types are retried:
 
@@ -262,7 +270,7 @@ Only the following error types are retried:
 - 429 Rate Limit
 - 5xx Internal
 
-The API may also explicitly instruct the SDK to retry or not retry a response.
+The API may also explicitly instruct the SDK to retry or not retry a request.
 
 To set a custom number of retries, configure the client using the `maxRetries` method:
 

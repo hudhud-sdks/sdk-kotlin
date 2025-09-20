@@ -12,7 +12,7 @@ import sa.hudhud.api.models.routing.RoutingCreateDistanceMatrixParams
 @ExtendWith(TestServerExtension::class)
 internal class RoutingServiceTest {
 
-    @Disabled("skipped: tests are disabled for the time being")
+    @Disabled("Prism tests are disabled")
     @Test
     fun createDistanceMatrix() {
         val client =

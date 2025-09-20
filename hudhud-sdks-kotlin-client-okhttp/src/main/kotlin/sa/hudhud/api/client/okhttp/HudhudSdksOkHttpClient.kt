@@ -12,18 +12,29 @@ import javax.net.ssl.X509TrustManager
 import sa.hudhud.api.client.HudhudSdksClient
 import sa.hudhud.api.client.HudhudSdksClientImpl
 import sa.hudhud.api.core.ClientOptions
+import sa.hudhud.api.core.Sleeper
 import sa.hudhud.api.core.Timeout
 import sa.hudhud.api.core.http.Headers
+import sa.hudhud.api.core.http.HttpClient
 import sa.hudhud.api.core.http.QueryParams
 import sa.hudhud.api.core.jsonMapper
 
+/**
+ * A class that allows building an instance of [HudhudSdksClient] with [OkHttpClient] as the
+ * underlying [HttpClient].
+ */
 class HudhudSdksOkHttpClient private constructor() {
 
     companion object {
 
-        /** Returns a mutable builder for constructing an instance of [HudhudSdksOkHttpClient]. */
+        /** Returns a mutable builder for constructing an instance of [HudhudSdksClient]. */
         fun builder() = Builder()
 
+        /**
+         * Returns a client configured using system properties and environment variables.
+         *
+         * @see ClientOptions.Builder.fromEnv
+         */
         fun fromEnv(): HudhudSdksClient = builder().fromEnv().build()
     }
 
@@ -85,16 +96,57 @@ class HudhudSdksOkHttpClient private constructor() {
             clientOptions.checkJacksonVersionCompatibility(checkJacksonVersionCompatibility)
         }
 
+        /**
+         * The Jackson JSON mapper to use for serializing and deserializing JSON.
+         *
+         * Defaults to [sa.hudhud.api.core.jsonMapper]. The default is usually sufficient and rarely
+         * needs to be overridden.
+         */
         fun jsonMapper(jsonMapper: JsonMapper) = apply { clientOptions.jsonMapper(jsonMapper) }
 
+        /**
+         * The interface to use for delaying execution, like during retries.
+         *
+         * This is primarily useful for using fake delays in tests.
+         *
+         * Defaults to real execution delays.
+         *
+         * This class takes ownership of the sleeper and closes it when closed.
+         */
+        fun sleeper(sleeper: Sleeper) = apply { clientOptions.sleeper(sleeper) }
+
+        /**
+         * The clock to use for operations that require timing, like retries.
+         *
+         * This is primarily useful for using a fake clock in tests.
+         *
+         * Defaults to [Clock.systemUTC].
+         */
         fun clock(clock: Clock) = apply { clientOptions.clock(clock) }
 
+        /**
+         * The base URL to use for every request.
+         *
+         * Defaults to the production environment: `https://b.hudhud.sa/v1`.
+         */
         fun baseUrl(baseUrl: String?) = apply { clientOptions.baseUrl(baseUrl) }
 
+        /**
+         * Whether to call `validate` on every response before returning it.
+         *
+         * Defaults to false, which means the shape of the response will not be validated upfront.
+         * Instead, validation will only occur for the parts of the response that are accessed.
+         */
         fun responseValidation(responseValidation: Boolean) = apply {
             clientOptions.responseValidation(responseValidation)
         }
 
+        /**
+         * Sets the maximum time allowed for various parts of an HTTP call's lifecycle, excluding
+         * retries.
+         *
+         * Defaults to [Timeout.default].
+         */
         fun timeout(timeout: Timeout) = apply { clientOptions.timeout(timeout) }
 
         /**
@@ -106,8 +158,24 @@ class HudhudSdksOkHttpClient private constructor() {
          */
         fun timeout(timeout: Duration) = apply { clientOptions.timeout(timeout) }
 
+        /**
+         * The maximum number of times to retry failed requests, with a short exponential backoff
+         * between requests.
+         *
+         * Only the following error types are retried:
+         * - Connection errors (for example, due to a network connectivity problem)
+         * - 408 Request Timeout
+         * - 409 Conflict
+         * - 429 Rate Limit
+         * - 5xx Internal
+         *
+         * The API may also explicitly instruct the SDK to retry or not retry a request.
+         *
+         * Defaults to 2.
+         */
         fun maxRetries(maxRetries: Int) = apply { clientOptions.maxRetries(maxRetries) }
 
+        /** JWT Bearer token for authentication. Example: "Bearer <token>" */
         fun apiKey(apiKey: String) = apply { clientOptions.apiKey(apiKey) }
 
         fun headers(headers: Headers) = apply { clientOptions.headers(headers) }
@@ -190,6 +258,11 @@ class HudhudSdksOkHttpClient private constructor() {
             clientOptions.removeAllQueryParams(keys)
         }
 
+        /**
+         * Updates configuration using system properties and environment variables.
+         *
+         * @see ClientOptions.Builder.fromEnv
+         */
         fun fromEnv() = apply { clientOptions.fromEnv() }
 
         /**

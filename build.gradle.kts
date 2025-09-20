@@ -8,7 +8,20 @@ repositories {
 
 allprojects {
     group = "sa.hudhud.api"
-    version = "0.1.0-alpha.2" // x-release-please-version
+    version = "0.1.0-alpha.3" // x-release-please-version
+}
+
+subprojects {
+    // These are populated with dependencies by `buildSrc` scripts.
+    tasks.register("format") {
+        group = "Verification"
+        description = "Formats all source files."
+    }
+    tasks.register("lint") {
+        group = "Verification"
+        description = "Verifies all source files are formatted."
+    }
+    apply(plugin = "org.jetbrains.dokka")
 }
 
 subprojects {

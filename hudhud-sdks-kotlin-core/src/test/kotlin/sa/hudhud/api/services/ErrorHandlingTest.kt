@@ -11,7 +11,6 @@ import com.github.tomakehurst.wiremock.junit5.WireMockTest
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.entry
 import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.parallel.ResourceLock
@@ -59,7 +58,6 @@ internal class ErrorHandlingTest {
                 .build()
     }
 
-    @Disabled("skipped: tests are disabled for the time being")
     @Test
     fun routingCreateDistanceMatrix400() {
         val routingService = client.routing()
@@ -91,7 +89,6 @@ internal class ErrorHandlingTest {
         assertThat(e.body()).isEqualTo(ERROR_JSON)
     }
 
-    @Disabled("skipped: tests are disabled for the time being")
     @Test
     fun routingCreateDistanceMatrix400WithRawResponse() {
         val routingService = client.routing().withRawResponse()
@@ -123,7 +120,6 @@ internal class ErrorHandlingTest {
         assertThat(e.body()).isEqualTo(ERROR_JSON)
     }
 
-    @Disabled("skipped: tests are disabled for the time being")
     @Test
     fun routingCreateDistanceMatrix401() {
         val routingService = client.routing()
@@ -155,7 +151,6 @@ internal class ErrorHandlingTest {
         assertThat(e.body()).isEqualTo(ERROR_JSON)
     }
 
-    @Disabled("skipped: tests are disabled for the time being")
     @Test
     fun routingCreateDistanceMatrix401WithRawResponse() {
         val routingService = client.routing().withRawResponse()
@@ -187,7 +182,6 @@ internal class ErrorHandlingTest {
         assertThat(e.body()).isEqualTo(ERROR_JSON)
     }
 
-    @Disabled("skipped: tests are disabled for the time being")
     @Test
     fun routingCreateDistanceMatrix403() {
         val routingService = client.routing()
@@ -219,7 +213,6 @@ internal class ErrorHandlingTest {
         assertThat(e.body()).isEqualTo(ERROR_JSON)
     }
 
-    @Disabled("skipped: tests are disabled for the time being")
     @Test
     fun routingCreateDistanceMatrix403WithRawResponse() {
         val routingService = client.routing().withRawResponse()
@@ -251,7 +244,6 @@ internal class ErrorHandlingTest {
         assertThat(e.body()).isEqualTo(ERROR_JSON)
     }
 
-    @Disabled("skipped: tests are disabled for the time being")
     @Test
     fun routingCreateDistanceMatrix404() {
         val routingService = client.routing()
@@ -283,7 +275,6 @@ internal class ErrorHandlingTest {
         assertThat(e.body()).isEqualTo(ERROR_JSON)
     }
 
-    @Disabled("skipped: tests are disabled for the time being")
     @Test
     fun routingCreateDistanceMatrix404WithRawResponse() {
         val routingService = client.routing().withRawResponse()
@@ -315,7 +306,6 @@ internal class ErrorHandlingTest {
         assertThat(e.body()).isEqualTo(ERROR_JSON)
     }
 
-    @Disabled("skipped: tests are disabled for the time being")
     @Test
     fun routingCreateDistanceMatrix422() {
         val routingService = client.routing()
@@ -347,7 +337,6 @@ internal class ErrorHandlingTest {
         assertThat(e.body()).isEqualTo(ERROR_JSON)
     }
 
-    @Disabled("skipped: tests are disabled for the time being")
     @Test
     fun routingCreateDistanceMatrix422WithRawResponse() {
         val routingService = client.routing().withRawResponse()
@@ -379,7 +368,6 @@ internal class ErrorHandlingTest {
         assertThat(e.body()).isEqualTo(ERROR_JSON)
     }
 
-    @Disabled("skipped: tests are disabled for the time being")
     @Test
     fun routingCreateDistanceMatrix429() {
         val routingService = client.routing()
@@ -411,7 +399,6 @@ internal class ErrorHandlingTest {
         assertThat(e.body()).isEqualTo(ERROR_JSON)
     }
 
-    @Disabled("skipped: tests are disabled for the time being")
     @Test
     fun routingCreateDistanceMatrix429WithRawResponse() {
         val routingService = client.routing().withRawResponse()
@@ -443,7 +430,6 @@ internal class ErrorHandlingTest {
         assertThat(e.body()).isEqualTo(ERROR_JSON)
     }
 
-    @Disabled("skipped: tests are disabled for the time being")
     @Test
     fun routingCreateDistanceMatrix500() {
         val routingService = client.routing()
@@ -475,7 +461,6 @@ internal class ErrorHandlingTest {
         assertThat(e.body()).isEqualTo(ERROR_JSON)
     }
 
-    @Disabled("skipped: tests are disabled for the time being")
     @Test
     fun routingCreateDistanceMatrix500WithRawResponse() {
         val routingService = client.routing().withRawResponse()
@@ -507,7 +492,6 @@ internal class ErrorHandlingTest {
         assertThat(e.body()).isEqualTo(ERROR_JSON)
     }
 
-    @Disabled("skipped: tests are disabled for the time being")
     @Test
     fun routingCreateDistanceMatrix999() {
         val routingService = client.routing()
@@ -539,7 +523,6 @@ internal class ErrorHandlingTest {
         assertThat(e.body()).isEqualTo(ERROR_JSON)
     }
 
-    @Disabled("skipped: tests are disabled for the time being")
     @Test
     fun routingCreateDistanceMatrix999WithRawResponse() {
         val routingService = client.routing().withRawResponse()
@@ -571,7 +554,6 @@ internal class ErrorHandlingTest {
         assertThat(e.body()).isEqualTo(ERROR_JSON)
     }
 
-    @Disabled("skipped: tests are disabled for the time being")
     @Test
     fun routingCreateDistanceMatrixInvalidJsonBody() {
         val routingService = client.routing()
